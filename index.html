@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <title>Komi OS</title>
+    </head>
+    <body>
+        <header id="top-bar" class="unselectable">
+            <p style="margin-left: 16px; cursor: pointer;" id="welcomeopen">
+                Komi OS
+            </p>
+            <p id="top-bar-clock" style="margin-right: 16px;">
+                6/21/2023 3:41 PM
+            </p>
+        </header>
+        <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
+            <div id="chocolat-desktop" class="desktopApp unselectable">
+                <img src="media/appIcons/chocolat.png" style="width: 64px; height: 64px; border-radius: 16px;">
+                <p style="margin: 0px; color: #fff; ">Chocolat</p>
+            </div>
+        </div>
+        <template id="welcome-template">
+            <div class="window" id="welcome" style="width: 400px;">
+                <div class="windowheader unselectable">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <img src="media/appIcons/welcome.png" style="width: 24px; height: 24px;">
+                        <p style="margin: 0;">Welcome</p>
+                    </div>
+                    <div class="closeButton"></div>
+                </div>
+                <div class="windowcontent" style="padding: 16px;">
+                    <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <h1>Komi OS</h1>
+                        <img src="media/sM5Xhlgmt8E_large.jpg" style="height: 96px;">
+                    </div>
+                    <p>This is a long piece of text to test  s o m e t h i n g</p>
+                </div>
+            </div>
+        </template>
+        <template id="chocolat-template">
+            <div class="window" id="chocolat" style="width: 300px;">
+                <div class="windowheader unselectable">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <img src="media/appIcons/chocolat.png" style="width: 24px; height: 24px;">
+                        <p style="margin: 0;">Chocolat Text Editor</p>
+                    </div>
+                    <div class="closeButton"></div>
+                </div>
+                <div class="windowcontent" style="padding: 16px;">
+                    <p contenteditable="true" style="overflow-y: auto; min-height: 100px; max-height: 200px; margin: 0;">When a person has extreme social anxiety, also known as social phobia, they struggle to communicate with others. Here's something to consider: they're only struggling. It doesn't mean that they don't want to form long-lasting connections or friendships.</p>
+                </div>
+            </div>
+        </template>
+        <script type="module" src="js/main.js"></script>
+    </body>
+</html>
