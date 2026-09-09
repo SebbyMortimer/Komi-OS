@@ -1,4 +1,4 @@
-# Komi-OS
+# Komi OS
 
 This is Komi OS, a WebOS created by me that is heavily inspired by Komi Can't Communicate. Currently it has draggable windows as well as multiple apps like notes and a music player with a lot more planned in the future.
 
