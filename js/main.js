@@ -1,19 +1,14 @@
-import { initClock } from "./modules/clock.js";
-import { handleIconTap } from "./modules/desktop.js";
-import { dragElement } from "./modules/draggable-window.js";
-import { Window, closeWindow, initWindow, openWindow } from "./modules/window.js";
+import { initClock } from "./clock.js";
+import { handleIconTap } from "./desktop.js";
+import { Window } from "./window.js";
 
 initClock();
-// initWindow("welcome");
-// initWindow("chocolat");
 
-const welcome = new Window("welcome");
+new Window("welcome");
 
-document.getElementById("chocolat-desktop").addEventListener("dblclick", () => handleIconTap(document.getElementById("chocolat-desktop"), "chocolat"));
-
-document.getElementById("welcomeopen").addEventListener("click", () => openWindow(document.getElementById("welcome")));
-
-document.getElementById("welcomeopen").addEventListener("click", () => openWindow(document.getElementById("welcome")));
+for (const child of document.getElementById("desktopApps").children) {
+    child.addEventListener("dblclick", () => handleIconTap(child, child.dataset.app));
+}
 
 document.addEventListener("click", function(event) {
     document.querySelectorAll(".desktopApp.selected").forEach(el => el.classList.remove("selected"));
@@ -22,4 +17,14 @@ document.addEventListener("click", function(event) {
     if (desktopAppTarget) {
         desktopAppTarget.classList.add("selected");
     }
+});
+
+document.getElementById("boot-button").addEventListener("click", function(event) {
+    document.getElementById("boot-button").parentNode.style.display = "none";
+    document.getElementById("boot-video").volume = 0.7;
+    document.getElementById("boot-video").play();
+
+    setTimeout(() => {
+        document.getElementById("boot-div").style.display = "none";
+    }, 7000);
 });

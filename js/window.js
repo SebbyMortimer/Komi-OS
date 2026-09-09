@@ -49,36 +49,11 @@ function updateWindowOrder() {
 }
 
 function moveWindowToTop(element) {
+    windows.at(-1)?.classList.remove("focusedWindow");
+    element.classList.add("focusedWindow");
+
     // remove element from array and reinsert it at the end to have it focus on top
     windows = windows.filter(w => w !== element);
     windows.push(element);
     updateWindowOrder();
-}
-
-function addWindowTapHandling(element) {
-    element.addEventListener("mousedown", () =>
-        moveWindowToTop(element)
-    )
-}
-
-export function closeWindow(element) {
-    element.style.display = "none";
-}
-
-function makeClosable(elementName) {
-    document.getElementById(elementName + "close").addEventListener("click", () => {
-        closeWindow(document.getElementById(elementName));
-    });
-}
-
-export function openWindow(element) {
-    element.style.display = "block";
-    moveWindowToTop(element);
-}
-
-export function initWindow(elementName) {
-    var screen = document.getElementById(elementName);
-    addWindowTapHandling(screen);
-    makeClosable(elementName);
-    dragElement(screen);
 }
