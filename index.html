@@ -6,10 +6,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <title>Komi OS</title>
+        <link rel="icon" type="image/jpeg" href="media/sM5Xhlgmt8E_large.jpg">
     </head>
     <body>
-        <div id="boot-div" style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh; transform: translate(-50%, -50%); z-index: 99999; background-color: black;">
-            <div style="display: flex; justify-content: center; align-items: center; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 2;">
+        <div id="boot-div" style="display: none;">
+            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 50px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: black; z-index: 2;">
+                <img src="media/boot-image.png" alt="Boot image" style="width: 250px;">
                 <button id="boot-button">Boot</button>
             </div>
             <video id="boot-video" style="display: block; width: 100%; height: 100%; object-fit: cover;">
@@ -22,18 +24,39 @@
                 Komi OS
             </p>
             <p id="top-bar-clock" style="margin-right: 16px;">
-                6/21/2023 3:41 PM
+                00:00:00
             </p>
         </header>
         <div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
             <div id="chocolat-desktop" data-app="chocolat" class="desktopApp unselectable">
-                <img src="media/appIcons/chocolat.png" style="width: 64px; height: 64px; border-radius: 16px;">
-                <p style="margin: 0px; color: #fff; ">Chocolat</p>
+                <img src="media/appIcons/chocolat.png" style="width: 64px; height: 64px; border-radius: 16px; filter: drop-shadow(0 0 8px black);">
+                <p style="margin: 0px; color: #fff; filter: drop-shadow(1px 2px 1px black);">Chocolat</p>
             </div>
             <div id="hyaku-desktop" data-app="hyaku" class="desktopApp unselectable">
-                <img src="media/appIcons/hyaku.png" style="width: 64px; height: 64px; border-radius: 16px;">
-                <p style="margin: 0px; color: #fff; ">Hyaku</p>
+                <img src="media/appIcons/hyaku.png" style="width: 64px; height: 64px; border-radius: 16px; filter: drop-shadow(0 0 8px black);">
+                <p style="margin: 0px; color: #fff; filter: drop-shadow(1px 2px 1px black);">Hyaku</p>
             </div>
+            <div id="minecraft-desktop" data-app="minecraft" class="desktopApp unselectable">
+                <img src="media/appIcons/minecraft.png" style="width: 64px; height: 64px; border-radius: 16px; filter: drop-shadow(0 0 8px black);">
+                <p style="margin: 0px; color: #fff; filter: drop-shadow(1px 2px 1px black);">Minecraft</p>
+            </div>
+        </div>
+        <div id="taskbar">
+            <div id="chocolat-taskbar" data-app="chocolat" class="taskbarApp unselectable">
+                <img src="media/appIcons/chocolat.png" style="display: block; width: 48px; height: 48px; border-radius: 12px;">
+            </div>
+            <div id="hyaku-taskbar" data-app="hyaku" class="taskbarApp unselectable">
+                <img src="media/appIcons/hyaku.png" style="display: block; width: 48px; height: 48px; border-radius: 12px;">
+            </div>
+            <div id="settings-taskbar" data-app="settings" class="taskbarApp unselectable">
+                <img src="media/appIcons/settings.png" style="display: block; width: 48px; height: 48px; border-radius: 12px;">
+            </div>
+        </div>
+        <div id="contextMenu">
+            <ul>
+                <li id="contextMenuCopy">Copy</li>
+                <li id="contextMenuPaste">Paste</li>
+            </ul>
         </div>
         <template id="welcome-template">
             <div class="window" style="width: 400px;">
@@ -109,6 +132,55 @@
                             <img src="media/volume_up.png" alt="Volume up">
                         </div>
                     </div>
+                </div>
+            </div>
+        </template>
+        <template id="settings-template">
+            <div class="window" style="width: 600px; overflow: hidden;">
+                <div class="windowheader unselectable">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <img src="media/appIcons/settings.png" style="width: 24px; height: 24px;">
+                        <p style="margin: 0;">Settings</p>
+                    </div>
+                    <div class="closeButton"></div>
+                </div>
+                <div class="windowcontent" style="overflow: hidden; position: relative; display: flex;">
+                    <div data-element="left-buttons" class="unselectable" style="flex-basis: 150px; padding: 10px;">
+                        <div data-tab="wallpaper-tab" style="display: flex; align-items: center; padding: 5px 10px; border: 2px solid black; border-radius: 10px; background: linear-gradient(#ffffff, #f0f0f0);">
+                            <img src="media/wallpaper_24dp_5985E1_FILL0_wght400_GRAD0_opsz24.png" alt="wallpaper-icon" style="max-width: 24px; height: auto;">
+                            <p style="margin: 0; margin-left: 5px;">Wallpaper</p>
+                        </div>
+                        <div data-tab="about-tab" style="display: flex; align-items: center; padding: 5px 10px; border: 2px solid black; border-radius: 10px; background: linear-gradient(#ffffff, #f0f0f0);">
+                            <img src="media/info_24dp_8B1A10_FILL0_wght400_GRAD0_opsz24.png" alt="wallpaper-icon" style="max-width: 24px; height: auto;">
+                            <p style="margin: 0; margin-left: 5px;">About</p>
+                        </div>
+                    </div>
+                    <div data-element="right-tabs" style="flex-basis: 450px; height: 300px;">
+                        <div data-element="wallpaper-tab" class="unselectable" style="height: 100%;">
+                            <div data-element="wallpaper-container" style="display: grid; grid-template-columns: auto auto; padding: 10px; overflow-y: auto; height: 100%; box-sizing: border-box;">
+
+                            </div>
+                        </div>
+                        <div data-element="about-tab" class="unselectable" style="display: none;">
+                            <div style="height: 300px;">
+                                <p>KomiOS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="minecraft-template">
+            <div class="window" style="width: 800px; overflow: hidden;">
+                <div class="windowheader unselectable">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <img src="media/appIcons/minecraft.png" style="width: 24px; height: 24px;">
+                        <p style="margin: 0;">Minecraft <span style="font-size: 12px;">(Press tab if keyboard isn't working ¯\_(ツ)_/¯ )</span></p>
+                    </div>
+                    <div class="closeButton"></div>
+                </div>
+                <div class="windowcontent" style="overflow: hidden; border-radius: 0 0 12px 12px;">
+                    <iframe data-element="minecraft-iframe" src="minecraft/index.html" width="854" height="480" style="display: block; width: 100%; aspect-ratio: 16 / 9; border: none;"></iframe>
                 </div>
             </div>
         </template>

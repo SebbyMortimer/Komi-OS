@@ -21,6 +21,75 @@ body {
     color: #fff;
 }
 
+#taskbar {
+    position: absolute;
+    display: flex;
+    /* gap: 15px; */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    /* padding: 15px 20px; */
+    border-radius: 16px;
+}
+
+#desktopApps {
+    display: grid;
+    grid-template-rows: repeat(auto-fill, 120px);
+    grid-auto-flow: column;
+    grid-auto-columns: 100px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#contextMenu {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    min-width: 150px;
+    z-index: 9999;
+    padding: 5px 0;
+    cursor: default;
+}
+
+#contextMenu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#contextMenu ul li {
+    display: block;
+    padding: 8px 12px;
+    color: #333333;
+    font-size: 14px;
+}
+
+#contextMenu ul li:hover {
+    background-color: #4A2E6B;
+    color: #ffffff;
+}
+
+#boot-div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+    background-color: black;
+}
+
+#boot-button {
+
+}
+
 ::selection {
     background-color: #4A2E6B;
     color: #fff;
@@ -68,10 +137,29 @@ body {
 .desktopApp {
     text-align: center;
     padding: 16px;
-    filter: drop-shadow(0 0 8px black);
-    width: fit-content;
+    /* filter: drop-shadow(0 0 8px black); */
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .selected {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+.taskbarApp {
+    padding: 12px;
+}
+
+.taskbarApp:hover {
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.taskbarApp:active > img {
+    transform: scale(0.8);
 }

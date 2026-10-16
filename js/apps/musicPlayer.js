@@ -1,10 +1,3 @@
-// const musicPlayer = document.getElementById("music-player-audio");
-
-// const backgroundCoverArt = document.getElementById("music-player-background");
-// const coverArt = document.getElementById("music-player-cover-art");
-// const title = document.getElementById("music-player-title");
-// const artist = document.getElementById("music-player-artist");
-
 import { Window } from "../window.js";
 
 const playlist = [
