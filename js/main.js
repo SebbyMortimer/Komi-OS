@@ -31,9 +31,13 @@ document.getElementById("boot-button").addEventListener("click", function(event)
     document.getElementById("boot-video").volume = 0.5;
     document.getElementById("boot-video").play();
 
+    let bootVideoHandled = false;
+
     document.getElementById("boot-video").addEventListener("timeupdate", function() {
-        if (document.getElementById("boot-video").currentTime >= 6.75) {
+        if (document.getElementById("boot-video").currentTime >= 6.75 && !bootVideoHandled) {
+            bootVideoHandled = true;
             document.getElementById("boot-div").style.display = "none";
+            setBootVideoExpiration(); // make boot video not show again for an hour
         }
     });
 });
@@ -56,9 +60,7 @@ function setBootVideoExpiration() {
     localStorage.setItem("bootVideoExpiration", expiryTime);
 }
 
-if (shouldShowBootVideo()) {
-    setBootVideoExpiration();
-} else {
+if (!shouldShowBootVideo()) {
     document.getElementById("boot-div").style.display = "none";
 }
 document.body.style.backgroundImage = `url('./media/wallpapers/${localStorage.getItem("wallpaper") || "1227431.png"}')`;
