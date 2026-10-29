@@ -52,5 +52,6 @@ export class Settings extends Window {
 
     changeWallpaper(wallpaper) {
         document.body.style.backgroundImage = `url('./media/wallpapers/${wallpaper}')`;
+        localStorage.setItem("wallpaper", wallpaper);
     }
 }

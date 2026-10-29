@@ -38,7 +38,33 @@ document.getElementById("boot-button").addEventListener("click", function(event)
     });
 });
 
-const contextMenu = document.getElementById("contextMenu")
+function shouldShowBootVideo() {
+    const expiration = localStorage.getItem("bootVideoExpiration");
+    const now = Date.now(); // Current time in milliseconds
+
+    // If no expiration exists, or the current time has passed the expiration
+    if (!expiration || now > parseInt(expiration, 10)) {
+        return true;
+    }
+    return false;
+}
+
+function setBootVideoExpiration() {
+    const oneHour = 1 * 60 * 60 * 1000; // 3,600,000 milliseconds
+    const expiryTime = Date.now() + oneHour;
+    
+    localStorage.setItem("bootVideoExpiration", expiryTime);
+}
+
+if (shouldShowBootVideo()) {
+    setBootVideoExpiration();
+} else {
+    document.getElementById("boot-div").style.display = "none";
+}
+document.body.style.backgroundImage = `url('./media/wallpapers/${localStorage.getItem("wallpaper") || "1227431.png"}')`;
+
+
+const contextMenu = document.getElementById("contextMenu");
 
 document.addEventListener("contextmenu", function(event) {
     event.preventDefault();

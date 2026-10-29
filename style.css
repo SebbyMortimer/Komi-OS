@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "ITC Zemke Hand STD";
+    src: url("Zemke Hand ITC Std Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     font-family: "Noto Sans", sans-serif;
     background-image: url("media/wallpapers/1227431.png");
